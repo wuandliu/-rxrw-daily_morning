@@ -21,14 +21,14 @@ template_id = os.environ["TEMPLATE_ID"]
 def get_weather():
 #   url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
   url = "https://restapi.amap.com/v3/weather/weatherInfo?city=310117&key=<4e9b1a7c509f20c459437a4a967cc9f6> "
-  res = requests.get(url).json()
-  DynamicJsonDocument doc(1024);
-  String resBuff = http.getString();
-  deserializeJson(doc, resBuff);
-  temp = doc["lives"][0]["temperature"].as<String>();//一定要加[0]!!!
-  weather = doc["lives"][0]["weather"].as<String>();
 #   res = requests.get(url).json()
-#   weather = res['data']['list'][0]
+#   DynamicJsonDocument doc(1024);
+#   String resBuff = http.getString();
+#   deserializeJson(doc, resBuff);
+#   temp = doc["lives"][0]["temperature"].as<String>();//一定要加[0]!!!
+#   weather = doc["lives"][0]["weather"].as<String>();
+  res = requests.get(url).json()
+  weather = res['data']['list'][0]
   return weather['weather'], math.floor(weather['temp'])
 
 def get_count():
